@@ -1,0 +1,37 @@
+body, button, select{ 
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+}
+
+video, .container > .imgContainer {
+    align-items: center;
+    border: solid 1px #fff;
+    border-radius: 12px;
+    display: flex;
+    height: 400px;
+    max-width: 600px;
+    position: relative;
+    width: 45%;
+}
+
+.container > div > img {
+    width: 100%;
+    display: none;
+}
+
+button {
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+    width: 125px;
+    padding: 10px 0 10px 0;
+}
