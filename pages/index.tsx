@@ -93,7 +93,7 @@ export default function Home() {
         <button id="screenshot">Ready!</button>
 
         <div className="imgContainer" style={{ display: 'none' }}>
-          <Image src="/" alt="placeholder" height={512} width={512} />
+          <Image src="/" alt="placeholder" height={440} width={585} />
         </div>
       </div>
     </>

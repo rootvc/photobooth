@@ -17,10 +17,9 @@ video, .container > .imgContainer {
     border: solid 1px #fff;
     border-radius: 12px;
     display: flex;
-    height: 400px;
-    max-width: 600px;
+    height: 440px;
     position: relative;
-    width: 45%;
+    width: 585px;
 }
 
 .container > div > img {
