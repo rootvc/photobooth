@@ -30,7 +30,7 @@ const init = () => {
 }
 
 const enableCamera = () => {
-  if (!navigator.mediaDevices && !navigator.mediaDevices.getUserMedia) {
+  if (!navigator.mediaDevices && !navigator.mediaDevices["getUserMedia"]) {
     alert("Unable to enable camera. That's bad. This is broken and won't work.");
   } else {
     enable = true;
@@ -51,7 +51,7 @@ const takeScreenshot = () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
-  canvas.getContext('2d').drawImage(video, 0, 0);
+  canvas.getContext('2d')!.drawImage(video, 0, 0);
   img.src = canvas.toDataURL('image/jpg');
   img.style.display = 'block'
 
