@@ -18,10 +18,10 @@ const init = () => {
   enableCamera();
 
   if (enable) {
-    idField = document.getElementById('id')!;
-    screenshot = document.getElementById('screenshot')!;
-    img = document.getElementsByTagName('img')[0]!;
-    video = document.getElementsByTagName('video')[0]!;
+    idField = document.getElementById('id') as HTMLInputElement;
+    screenshot = document.getElementById('screenshot') as HTMLButtonElement;
+    img = document.getElementsByTagName('img')[0] as HTMLImageElement;
+    video = document.getElementsByTagName('video')[0] as HTMLVideoElement;
 
     screenshot.addEventListener('click', takeScreenshot);
   }
