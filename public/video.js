@@ -1,25 +1,24 @@
-let img, video, screenshot, tag;
+let img, video, screenshot, downloadTag, idField;
 let enable = false;
 const canvas = document.createElement('canvas');
 
 const init = () => {
-  hasGetUserMedia()
+  enableCamera();
 
   if (enable) {
+    idField = document.getElementById('id');
     screenshot = document.getElementById('screenshot');
-
     img = document.getElementsByTagName('img')[0];
     video = document.getElementsByTagName('video')[0];
-
     screenshot.addEventListener('click', takeScreenshot);
   }
 
   startCamera();
 }
 
-const hasGetUserMedia = () => {
+const enableCamera = () => {
   if (!navigator.mediaDevices && !navigator.mediaDevices.getUserMedia) {
-    alert('Unable to enable camera.');
+    alert("Unable to enable camera. That's bad. This is broken and won't work.");
   } else {
     enable = true;
   }
@@ -36,28 +35,31 @@ const startCamera = () => {
 }
 
 const takeScreenshot = () => {
-  canvas.width = 512;
-  canvas.height = 512;
-  // TODO: Hardcoded height/width crops off-center, use a better cropping tool
-  // canvas.width = video.videoWidth;
-  // canvas.height = video.videoHeight;
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
 
   canvas.getContext('2d').drawImage(video, 0, 0);
   img.src = canvas.toDataURL('image/jpg');
   img.style.display = 'block'
 
-  downloadScreenshot();
+  downloadScreenshot(); // TODO: Send to S3 instead!
 }
 
 const downloadScreenshot = () => {
-  tag = document.createElement('a');
-  tag.href = img.src
-  tag.download = 'yourScreenshot.jpg';
-  tag.style.display = 'none';
+  let id = idField.value.replace(/[^a-z0-9]/gi, '');
 
-  document.body.appendChild(tag);
-  tag.click();
-  document.body.removeChild(tag);
+  downloadTag = document.createElement('a');
+  downloadTag.href = img.src
+  downloadTag.download = `${id}.jpg`;
+  downloadTag.style.display = 'none';
+
+  document.body.appendChild(downloadTag);
+  downloadTag.click();
+  document.body.removeChild(downloadTag);
 };
+
+const reset = () => {
+  // clear input field
+}
 
 document.addEventListener('DOMContentLoaded', init)

@@ -1,3 +1,21 @@
+h2.countdown {
+    position: absolute;
+    font-size: 16em;
+}
+
+input.identifier {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    height: 2.5em;
+    margin: 1em;
+    text-align: center;
+    width: 45%;
+}
+
+
 .container {
   padding: 0 2rem;
 }

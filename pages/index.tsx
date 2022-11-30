@@ -10,9 +10,10 @@ export default function Home() {
 
       <div className="container">
         <video autoPlay />
-        <div>
-          <button id="screenshot">Snap!</button>
-        </div>
+        <h2 className={styles.countdown} style={{ display: 'none' }}>3</h2>
+        <input id="id" className={styles.identifier} placeholder="your email (required)" />
+        <button id="screenshot">Ready!</button>
+
         <div className="imgContainer" style={{ display: 'none' }}>
           <img src="" />
         </div>
