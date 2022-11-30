@@ -7,7 +7,6 @@ export default function Document() {
         <meta charSet="utf-8" />
         <link rel="shortcut icon" href="/favicon.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <script src="video.js"></script>
       </Head>
       <body>
         <Main />
