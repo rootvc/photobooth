@@ -7,10 +7,10 @@ import styles from '@styles/Gallery.module.css'
 
 const isIndexPage = (token: string | null) => !token || token === "index.html";
 
-export default function GalleryByToken() {
+export default function Gallery() {
   const router = useRouter();
   const [photoUrls, setPhotoUrls] = useState<string[] | null>([]);
-  const token: string = typeof (router.query.token) === "string" ? router.query.token : "";
+  const token: string | null = router.query.token ? router.query.token[0] : null;
 
   useEffect(() => {
     fetch("/api/fetchS3Urls")
@@ -46,39 +46,4 @@ export default function GalleryByToken() {
       </ul>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/fetchS3Urls`);
-  const data = await res.json();
-  const urls = data["urls"];
-  const tokenIndex = urls[0].split("/").length - 2; // this is the same for every url and can be done once
-
-  const props = urls.map((u: string) => u.split("/")[tokenIndex]);
-  const uniqueProps = props.filter((item: string, pos: number) => props.indexOf(item) == pos);
-
-  return {
-    props: {
-      uniqueProps,
-    },
-    revalidate: 10, // In seconds
-  }
-}
-
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/fetchS3Urls`);
-  const data = await res.json();
-  const urls = data["urls"];
-  const tokenIndex = urls[0].split("/").length - 2; // this is the same for every url and can be done once
-
-  const paths = urls.map((u: string) => u.split("/")[tokenIndex]);
-  const uniquePaths = paths.filter((item: string, pos: number) => paths.indexOf(item) == pos);
-
-  const staticPaths = uniquePaths.map((t: string) => ({ params: { token: t } }));
-  const rootPath = { params: { token: "" } };
-
-  return {
-    paths: [...staticPaths, rootPath],
-    fallback: "blocking",
-  };
 }
