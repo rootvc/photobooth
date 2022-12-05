@@ -27,7 +27,7 @@ export default function GalleryByToken() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [token]);
 
   return (
     <>
@@ -35,11 +35,11 @@ export default function GalleryByToken() {
         <title>Root Ventures Photobooth</title>
       </Head>
 
-      <h1 className={styles.galleryHeader}>{token && ` $${token}:`}gallery &gt;_</h1>
+      <h1 className={styles.galleryHeader}>{token && token[0] !== "index.html" && `$${token}:`}gallery &gt;_</h1>
 
       <ul className={styles.gallery}>
         {photoUrls!.map((url, index) =>
-          <GalleryPhoto key={index} url={url} />
+          <GalleryPhoto key={index} url={url} index={index} />
         )}
       </ul>
     </>
