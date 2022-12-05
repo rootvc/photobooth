@@ -1,0 +1,26 @@
+ul.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1040px;
+    padding: 0;
+}
+
+li.galleryImage {
+    flex-basis: 512px;
+    list-style: none;
+    margin: 0;
+}
+
+li.galleryImage > img {
+    object-fit: cover;
+    border-radius: 4px;
+    margin: 0 4px 4px 4px ;
+}
+
+h1.galleryHeader {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
