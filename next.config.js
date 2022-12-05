@@ -4,15 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: [],
   images: {
+    domains: ["rootvc-dreambooth.s3.amazonaws.com"],
     formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "rootvc-dreambooth.s3.amazonaws.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
   },
 }
 
