@@ -11,7 +11,13 @@ interface GalleryPhotoProps {
 const GalleryPhoto = (props: GalleryPhotoProps) => {
   return (
     <li className={styles.galleryPhoto}>
-      <Image alt="Extremely cool AI generated image" src={props.url} height={512} width={512} priority={props.index < 2} />
+      <Image
+        src={props.url}
+        alt="Extremely cool AI generated image"
+        height={512}
+        width={512}
+        priority={props.index < 2}
+      />
     </li>
   )
 };
