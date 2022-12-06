@@ -3,11 +3,12 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import aws from 'aws-sdk'
 import { S3 } from 'aws-sdk';
 
-const bucketName = "rootvc-dreambooth";
+const bucketName = process.env.S3_OUTPUT_BUCKET!;
 const s3 = new aws.S3();
 aws.config.update({
   accessKeyId: process.env.ROOTVC_AWS_ACCESS_KEY,
   secretAccessKey: process.env.ROOTVC_AWS_SECRET_KEY,
+  region: "us-west-2",
   signatureVersion: 'v4',
 });
 
