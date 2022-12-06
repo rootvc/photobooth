@@ -6,8 +6,8 @@ import { S3 } from 'aws-sdk';
 const bucketName = "rootvc-dreambooth";
 const s3 = new aws.S3();
 aws.config.update({
-  accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
-  secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_KEY,
+  accessKeyId: process.env.ROOTVC_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.ROOTVC_AWS_SECRET_KEY,
   signatureVersion: 'v4',
 });
 
