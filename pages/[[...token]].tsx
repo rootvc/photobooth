@@ -58,7 +58,7 @@ export default function Gallery() {
         <title>Root Ventures Photobooth</title>
       </Head>
 
-      <h1 className={styles.galleryHeader}>{!isIndexPage(token) && `$${token}:`}gallery &gt;_</h1>
+      <h1 className={styles.galleryHeader}>{!isIndexPage(token) && "$guest"}:gallery &gt;_</h1>
 
       <ul className={styles.gallery}>
         {photoUrls && photoUrls.length > 0 && photoUrls.map((url, index) =>
