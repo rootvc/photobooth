@@ -15,7 +15,7 @@ var s3 = new AWS.S3({
   params: { Bucket: bucketName }
 });
 
-const isIndexPage = (token: string | null) => !token || token === "index.html";
+const isIndexPage = (token: string | null) => token === "";
 
 export default function Gallery() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Gallery() {
       setToken(router.query.token ? router.query.token[0] : "");
 
     }
-  }, [router.query.token]);
+  }, [router.query.token, router.isReady]);
 
   useEffect(() => {
     if (token || token == "") {
@@ -43,7 +43,7 @@ export default function Gallery() {
           var bucketUrl = href + bucketName + '/';
           var photos = data.Contents!.map((photo) => `${bucketUrl}${photo.Key!}`);
 
-          if (isIndexPage(token)) {
+          if (isIndexPage(token!)) {
             photos = photos.reverse();
           }
 
@@ -68,8 +68,12 @@ export default function Gallery() {
         <title>Root Ventures Photobooth</title>
       </Head>
 
-      <h1 className={styles.galleryHeader}>{!isIndexPage(token) && "$guest"}:gallery &gt;_</h1>
-      <h2 className={styles.message}>{token && photoUrls && photoUrls.length == 0 ? "Working on your images. Come back once you get a text!" : ""}</h2>
+      <h1 className={styles.galleryHeader}>{!isIndexPage(token!) && "$guest"}:gallery &gt;_</h1>
+      {!router.isReady && token && photoUrls && photoUrls.length == 0 ?
+        <h2 className={styles.message}>
+          Working on your images. Come back once you get a text!
+        </h2>
+        : ""}
 
       <ul className={styles.gallery}>
         {photoUrls && photoUrls.length > 0 && photoUrls.map((url, index) =>
