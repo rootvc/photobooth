@@ -20,7 +20,7 @@ const isIndexPage = (token: string | null) => !token || token === "index.html";
 export default function Gallery() {
   const router = useRouter();
   const [photoUrls, setPhotoUrls] = useState<string[] | null>([]);
-  const [token, setToken] = useState<string | null>([]);
+  const [token, setToken] = useState<string | null>();
 
   useEffect(() => {
     if (router.isReady) {
@@ -31,7 +31,7 @@ export default function Gallery() {
   }, [router.query.token]);
 
   useEffect(() => {
-    if (token != null) {
+    if (token || token == "") {
       function fetchPhotos(prefix: string) {
         const objs = s3.listObjects({ Bucket: bucketName, Prefix: prefix }, function(err, data) {
           if (err) {
@@ -69,6 +69,7 @@ export default function Gallery() {
       </Head>
 
       <h1 className={styles.galleryHeader}>{!isIndexPage(token) && "$guest"}:gallery &gt;_</h1>
+      <h2 className={styles.message}>{token && photoUrls && photoUrls.length == 0 ? "Working on your images. Come back once you get a text!" : ""}</h2>
 
       <ul className={styles.gallery}>
         {photoUrls && photoUrls.length > 0 && photoUrls.map((url, index) =>

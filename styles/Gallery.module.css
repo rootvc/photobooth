@@ -24,3 +24,9 @@ h1.galleryHeader {
     margin: 0 auto;
     padding: 2rem 0;
 }
+
+h2.message {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
