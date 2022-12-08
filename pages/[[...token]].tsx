@@ -25,12 +25,13 @@ export default function Gallery() {
   useEffect(() => {
     if (router.isReady) {
       console.log("SETTING TOKEN", router.query.token ? router.query.token[0] : "(undefined)");
-      setToken(router.query.token ? router.query.token[0] : null);
+      setToken(router.query.token ? router.query.token[0] : "");
+
     }
   }, [router.query.token]);
 
   useEffect(() => {
-    if (router.isReady && token) {
+    if (token != null) {
       function fetchPhotos(prefix: string) {
         const objs = s3.listObjects({ Bucket: bucketName, Prefix: prefix }, function(err, data) {
           if (err) {
@@ -57,7 +58,7 @@ export default function Gallery() {
         return objs;
       }
 
-      fetchPhotos("output/" + token);
+      fetchPhotos(["output", token].join("/"));
     }
   }, [token]);
 
