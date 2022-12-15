@@ -78,12 +78,6 @@ export default function Gallery() {
           Little AI elves are working on the generated images. Come back again soon!
         </h2>
       }
-
-      <ul className={styles.gallery}>
-        {photoUrls && photoUrls.length > 0 && photoUrls.map((url, index) =>
-          <GalleryPhoto key={index} url={url} index={index} />
-        )}
-      </ul>
     </>
   );
 }
