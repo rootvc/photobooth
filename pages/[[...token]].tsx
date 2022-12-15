@@ -73,7 +73,11 @@ export default function Gallery() {
         <h2 className={styles.message}>
           Working on your images. Come back once you get a text!
         </h2>
-        : ""}
+        :
+        <h2 className={styles.message}>
+          Little AI elves are working on the generated images. Come back again soon!
+        </h2>
+      }
 
       <ul className={styles.gallery}>
         {photoUrls && photoUrls.length > 0 && photoUrls.map((url, index) =>
